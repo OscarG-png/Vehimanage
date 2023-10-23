@@ -15,7 +15,7 @@ from sales_rest.models import AutomobileVO
 
 
 def get_automobiles():
-    url = "http://inventory-api-1:8000/api/automobiles/"
+    url = "http://project-beta-inventory-api-1:8000/api/automobiles/"
     response = requests.get(url)
     content = json.loads(response.content)
     for auto in content["autos"]:
