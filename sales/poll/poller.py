@@ -14,18 +14,22 @@ django.setup()
 from sales_rest.models import AutomobileVO
 
 
+def get_automobiles():
+    url = "http://inventory-api-1:8000/api/automobiles/"
+    response = requests.get(url)
+    content = json.loads(response.content)
+    for auto in content["autos"]:
+        AutomobileVO.objects.update_or_create(
+            vin=auto["vin"],
+            sold=auto["sold"]
+        )
+
+
 def poll(repeat=True):
     while True:
         print('Sales poller polling for data')
         try:
-            url = "http://localhost:8000/api/automobiles/"
-            response = requests.get(url)
-            content = json.loads(response.content)
-            for auto in content["autos"]:
-                AutomobileVO.objects.update_or_create(
-                    vin=auto["vin"],
-                    sold=auto["sold"]
-                )
+            get_automobiles()
             print("got data")
         except Exception as e:
             print(e, file=sys.stderr)
