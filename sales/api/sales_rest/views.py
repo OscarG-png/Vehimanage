@@ -6,6 +6,14 @@ import json
 from .models import Salesperson, Sale, Customer, AutomobileVO
 
 
+class AutomobileVOEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "vin",
+        "sold",
+    ]
+
+
 class SalespersonEncoder(ModelEncoder):
     model = Salesperson
     properties = [
@@ -38,6 +46,7 @@ class SaleListEncoder(ModelEncoder):
     properties = [
         "salesperson",
         "customer",
+        "id",
     ]
     encoders = {"salesperson": SalespersonEncoder(),
                 "customer": CustomerDetailEncoder()}
@@ -46,11 +55,13 @@ class SaleListEncoder(ModelEncoder):
 class SaleDetailEncoder(ModelEncoder):
     model = Sale
     properties = [
+        "automobile",
         "salesperson",
         "customer",
         "price"
     ]
-    encoders = {"salesperson": SalespersonEncoder(),
+    encoders = {"automobile": AutomobileVOEncoder(),
+                "salesperson": SalespersonEncoder(),
                 "customer": CustomerDetailEncoder()}
 
 
