@@ -47,6 +47,17 @@ class AppointmentListEncoder(ModelEncoder):
     ]
 
 
+class AppointmentDetailEncoder(ModelEncoder):
+    model = Appointment
+    properties = [
+        "vin",
+        "customer",
+        "date_time",
+        "technician",
+        "reason",
+    ]
+
+
 @require_http_methods(["GET", "POST"])
 def technicianlist(request, tech_id=None):
     if request.method == "GET":
@@ -75,3 +86,18 @@ def technicianlist(request, tech_id=None):
             encoder=TechnicianDetailEncoder,
             safe=False
         )
+
+
+@require_http_methods(["GET", "PUT", "DELETE"])
+def techniciandetail(request, pk):
+    try:
+        tech = Technician.objects.get(pk=pk)
+    except Technician.DoesNotExist:
+        return JsonResponse({"message": "Technician not found."}, status=400)
+    if request.method == "GET":
+        return JsonResponse(tech, encoder=TechnicianDetailEncoder, safe=False)
+    elif request.method == "PUT":
+        pass
+    elif request.method == "DELETE":
+        tech.delete()
+        return JsonResponse({"message": "Technician deleted successfully."}, status=200)
