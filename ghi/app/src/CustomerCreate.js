@@ -24,6 +24,27 @@ function CustomerCreate() {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const data = {};
+        data.first_name = firstName;
+        data.last_name = lastName;
+        data.address = address;
+        data.phone_number = phoneNumber;
+
+        const customerUrl = "http://localhost:8090/api/customers/";
+        const fetchConfig = {
+            method: "post",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const response = await fetch(customerUrl, fetchConfig);
+        if (response.ok) {
+            setFirstName('');
+            setLastName('');
+            setAddress('');
+            setPhoneNumber('');
+        }
     }
     return (
         <div className="offset-4 col-5">
