@@ -35,7 +35,7 @@ function CustomerList () {
                             <td key={customer.first_name}>{customer.first_name}</td>
                             <td key={customer.last_name}>{customer.last_name}</td>
                             <td key={customer.phone_number}>{customer.phone_number}</td>
-                            <td key={customer.address}>{customer.phone_number}</td>
+                            <td key={customer.address}>{customer.address}</td>
                         </tr>
                     )
                 })}

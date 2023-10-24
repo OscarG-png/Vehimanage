@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 function CustomerCreate() {
     const [firstName, setFirstName] = useState('');
@@ -45,9 +45,10 @@ function CustomerCreate() {
             setAddress('');
             setPhoneNumber('');
         }
-    }
+    };
     return (
         <div className="offset-4 col-5">
+            <form onSubmit={handleSubmit} id="create-customer-form">
             <div className="my-3 card">
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">First name</label>
@@ -69,8 +70,9 @@ function CustomerCreate() {
                     <textarea onChange={handleAddressChange} type="text" className="form-control"
                     id="formControlTextarea1" placeholder="Address"/>
                 </div>
-                <button onClick={handleSubmit} type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </div>
+            </form>
         </div>
     )
 }

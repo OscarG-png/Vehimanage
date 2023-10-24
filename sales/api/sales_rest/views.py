@@ -33,17 +33,6 @@ class CustomerDetailEncoder(ModelEncoder):
     ]
 
 
-class SaleListEncoder(ModelEncoder):
-    model = Sale
-    properties = [
-        "salesperson",
-        "customer",
-        "id",
-    ]
-    encoders = {"salesperson": SalespersonEncoder(),
-                "customer": CustomerDetailEncoder()}
-
-
 class SaleDetailEncoder(ModelEncoder):
     model = Sale
     properties = [
@@ -133,7 +122,7 @@ def api_list_sales(request):
         sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
-            encoder=SaleListEncoder
+            encoder=SaleDetailEncoder
         )
     else:
         content = json.loads(request.body)
