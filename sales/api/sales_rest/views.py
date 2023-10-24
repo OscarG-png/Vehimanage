@@ -11,15 +11,7 @@ class SalespersonEncoder(ModelEncoder):
     properties = [
         "first_name",
         "last_name",
-    ]
-
-
-class SalespersonDetailEncoder(ModelEncoder):
-    model = Salesperson
-    properties = [
-        "first_name",
-        "last_name",
-        "employee_id",
+        "employee_id"
     ]
 
 
@@ -47,7 +39,7 @@ class SaleListEncoder(ModelEncoder):
         "salesperson",
         "customer",
     ]
-    encoders = {"salesperson": SalespersonDetailEncoder(),
+    encoders = {"salesperson": SalespersonEncoder(),
                 "customer": CustomerDetailEncoder()}
 
 
@@ -58,7 +50,7 @@ class SaleDetailEncoder(ModelEncoder):
         "customer",
         "price"
     ]
-    encoders = {"salesperson": SalespersonDetailEncoder(),
+    encoders = {"salesperson": SalespersonEncoder(),
                 "customer": CustomerDetailEncoder()}
 
 
@@ -75,7 +67,7 @@ def api_list_salespeople(request):
         salesperson = Salesperson.objects.create(**content)
         return JsonResponse(
             salesperson,
-            encoder=SalespersonDetailEncoder,
+            encoder=SalespersonEncoder,
             safe=False
         )
 
@@ -86,7 +78,7 @@ def api_salesperson_details(request, id):
         salesperson = Salesperson.objects.get(id=id)
         return JsonResponse(
             salesperson,
-            encoder=SalespersonDetailEncoder,
+            encoder=SalespersonEncoder,
             safe=False
         )
     elif request.method == "DELETE":
