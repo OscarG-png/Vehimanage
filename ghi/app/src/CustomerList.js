@@ -18,6 +18,7 @@ function CustomerList () {
         <Link to="/customers/create">
             <button className="btn btn-primary my-3">Add a Customer</button>
         </Link>
+        <h1>Customers</h1>
         <table className="table table-striped">
             <thead>
                 <tr>

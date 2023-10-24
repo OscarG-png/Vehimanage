@@ -19,6 +19,7 @@ return (
         <Link to="/salespeople/create">
             <button className="btn btn-primary my-3">Add a salesperson</button>
         </Link>
+        <h1>Salespeople</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
