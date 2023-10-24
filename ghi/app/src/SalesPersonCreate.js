@@ -17,7 +17,7 @@ function SalesPeopleCreate() {
         const {value} = event.target;
         setEmployeeID(value);
     }
-    const handleSumbit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = {};
         data.first_name = firstName;
@@ -57,7 +57,7 @@ function SalesPeopleCreate() {
                     <input onChange={handleEmployeeIDChange} type="text" className="form-control"
                     id="formGroupExampleInput3" placeholder="Employee ID"/>
                 </div>
-                <button onClick={handleSumbit} type="submit" className="btn btn-primary">Submit</button>
+                <button onClick={handleSubmit} type="submit" className="btn btn-primary">Submit</button>
             </div>
         </div>
     )

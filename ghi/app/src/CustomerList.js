@@ -15,7 +15,7 @@ function CustomerList () {
     }, []);
     return (
         <div>
-        <Link to="/Customer/create">
+        <Link to="/customers/create">
             <button className="btn btn-primary my-3">Add a Customer</button>
         </Link>
         <table className="table table-striped">

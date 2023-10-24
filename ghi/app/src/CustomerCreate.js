@@ -1,4 +1,56 @@
-function CustomerCreate() {
+import React, { useEffect, useState } from "react"
 
+function CustomerCreate() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
+
+    const handleFirstNameChange = (event) => {
+        const {value} = event.target;
+        setFirstName(value);
+    }
+    const handleLastNameChange = (event) => {
+        const {value} = event.target;
+        setLastName(value);
+    }
+    const handlePhoneNumberChange = (event) => {
+        const {value} = event.target;
+        setPhoneNumber(value);
+    }
+    const handleAddressChange = (event) => {
+        const {value} = event.target;
+        setAddress(value);
+    }
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    }
+    return (
+        <div className="offset-4 col-5">
+            <div className="my-3 card">
+                <div className="mb-3 mx-3">
+                    <label htmlFor="formGroupExampleInput" className="form-label">First name</label>
+                    <input onChange={handleFirstNameChange} type="text" className="form-control"
+                    id="formGroupExampleInput" placeholder="First name"/>
+                </div>
+                <div className="mb-3 mx-3">
+                    <label htmlFor="formGroupExampleInput2" className="form-label">Last Name</label>
+                    <input onChange={handleLastNameChange} type="text" className="form-control"
+                    id="formGroupExampleInput2" placeholder="Last name"/>
+                </div>
+                <div className="mb-3 mx-3">
+                    <label htmlFor="formGroupExampleInput3" className="form-label">Phone Number</label>
+                    <input onChange={handlePhoneNumberChange} type="text" className="form-control"
+                    id="formGroupExampleInput3" placeholder="Phone Number"/>
+                </div>
+                <div className="mb-3 mx-3">
+                    <label htmlFor="formControlTextarea1" className="form-label">Address</label>
+                    <textarea onChange={handleAddressChange} type="text" className="form-control"
+                    id="formControlTextarea1" placeholder="Address"/>
+                </div>
+                <button onClick={handleSubmit} type="submit" className="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    )
 }
 export default CustomerCreate;
