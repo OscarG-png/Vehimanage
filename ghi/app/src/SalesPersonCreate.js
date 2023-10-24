@@ -44,17 +44,17 @@ function SalesPeopleCreate() {
             <div className="my-3 card">
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">First name</label>
-                    <input onChange={handleFirstNameChange} type="text" className="form-control"
+                    <input value={firstName} onChange={handleFirstNameChange} type="text" className="form-control"
                     id="formGroupExampleInput" placeholder="First name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput2" className="form-label">Last Name</label>
-                    <input onChange={handleLastNameChange} type="text" className="form-control"
+                    <input value={lastName} onChange={handleLastNameChange} type="text" className="form-control"
                     id="formGroupExampleInput2" placeholder="Last name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput3" className="form-label">Employee ID</label>
-                    <input onChange={handleEmployeeIDChange} type="text" className="form-control"
+                    <input value={employeeID} onChange={handleEmployeeIDChange} type="text" className="form-control"
                     id="formGroupExampleInput3" placeholder="Employee ID"/>
                 </div>
                 <button onClick={handleSubmit} type="submit" className="btn btn-primary">Submit</button>

@@ -31,10 +31,10 @@ return (
             <tbody>
                 {salespeople.map(person => {
                     return (
-                        <tr key={person.employee_id + person.first_name}>
-                            <td key={person.employee_id}>{person.employee_id}</td>
-                            <td key={person.first_name}>{person.first_name}</td>
-                            <td key={person.last_name}>{person.last_name}</td>
+                        <tr key={person.id}>
+                            <td>{person.employee_id}</td>
+                            <td>{person.first_name}</td>
+                            <td>{person.last_name}</td>
                         </tr>
                     )
                 })}

@@ -22,7 +22,7 @@ function CustomerCreate() {
         const {value} = event.target;
         setAddress(value);
     }
-    const handleSubmit = async (event) => {
+    async function handleSubmit(event) {
         event.preventDefault();
         const data = {};
         data.first_name = firstName;
@@ -52,22 +52,22 @@ function CustomerCreate() {
             <div className="my-3 card">
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">First name</label>
-                    <input onChange={handleFirstNameChange} type="text" className="form-control"
-                    id="formGroupExampleInput" placeholder="First name"/>
+                    <input value={firstName} onChange={handleFirstNameChange} type="text"
+                    className="form-control" id="formGroupExampleInput" placeholder="First name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput2" className="form-label">Last Name</label>
-                    <input onChange={handleLastNameChange} type="text" className="form-control"
+                    <input value={lastName} onChange={handleLastNameChange} type="text" className="form-control"
                     id="formGroupExampleInput2" placeholder="Last name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput3" className="form-label">Phone Number</label>
-                    <input onChange={handlePhoneNumberChange} type="text" className="form-control"
+                    <input value={phoneNumber} onChange={handlePhoneNumberChange} type="text" className="form-control"
                     id="formGroupExampleInput3" placeholder="Phone Number"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formControlTextarea1" className="form-label">Address</label>
-                    <textarea onChange={handleAddressChange} type="text" className="form-control"
+                    <textarea value={address} onChange={handleAddressChange} type="text" className="form-control"
                     id="formControlTextarea1" placeholder="Address"/>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
