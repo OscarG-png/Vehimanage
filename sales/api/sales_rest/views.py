@@ -23,6 +23,24 @@ class SalespersonDetailEncoder(ModelEncoder):
     ]
 
 
+class CustomerListEncoder(ModelEncoder):
+    model = Customer
+    properties = [
+        "first_name",
+        "last_name"
+    ]
+
+
+class CustomerDetailEncoder(ModelEncoder):
+    model = Customer
+    properties = [
+        "first_name",
+        "last_name",
+        "address",
+        "phone_number",
+    ]
+
+
 @require_http_methods(["GET", "POST"])
 def api_list_salespeople(request):
     if request.method == "GET":
@@ -52,6 +70,41 @@ def api_salesperson_details(request, id):
         )
     elif request.method == "DELETE":
         count, _ = Salesperson.objects.filter(id=id).delete()
+        return JsonResponse(
+            {"message": count > 0},
+            status=200,
+        )
+
+
+@require_http_methods(["GET", "POST"])
+def api_list_customer(request):
+    if request.method == "GET":
+        customers = Customer.objects.all()
+        return JsonResponse(
+            {"customers": customers},
+            encoder=CustomerListEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        customer = Customer.objects.create(**content)
+        return JsonResponse(
+            customer,
+            encoder=CustomerDetailEncoder,
+            safe=False,
+        )
+
+
+@require_http_methods(["GET", "PUT", "DELETE"])
+def api_customer_details(request, id):
+    if request.method == "GET":
+        customer = Customer.objects.get(id=id)
+        return JsonResponse(
+            {"customer": customer},
+            encoder=CustomerDetailEncoder,
+            safe=False
+        )
+    elif request.method == "DELETE":
+        count, _ = Customer.objects.filter(id=id).delete()
         return JsonResponse(
             {"message": count > 0},
             status=200,
