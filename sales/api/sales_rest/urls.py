@@ -2,7 +2,9 @@ from django.urls import path
 from .views import (api_list_salespeople,
                     api_salesperson_details,
                     api_list_customer,
-                    api_customer_details)
+                    api_customer_details,
+                    api_list_sales,
+                    api_sale_details)
 
 
 urlpatterns = [
@@ -18,4 +20,14 @@ urlpatterns = [
         api_customer_details,
         name="api_customer_details"
     ),
+    path(
+        "sales/",
+        api_list_sales,
+        name="api_list_sales"
+    ),
+    path(
+        "sales/<int:id>/",
+        api_sale_details,
+        name="api_sale_details"
+    )
 ]
