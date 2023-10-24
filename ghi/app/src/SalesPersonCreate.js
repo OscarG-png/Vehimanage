@@ -34,8 +34,6 @@ function SalesPeopleCreate() {
         };
         const response = await fetch(salesPersonUrl, fetchConfig);
         if (response.ok) {
-            const newSalesPerson = await response.json();
-            console.log(newSalesPerson);
             setFirstName('');
             setLastName('');
             setEmployeeID('');

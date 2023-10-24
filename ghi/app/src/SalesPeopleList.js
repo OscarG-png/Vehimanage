@@ -19,16 +19,16 @@ return (
         <Link to="/salespeople/create">
             <button className="btn btn-primary my-3">Add a salesperson</button>
         </Link>
-    <table className="table table-striped">
-        <thead>
-            <tr>
-                <th>Employee id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            {salespeople.map(person => {
+        <table className="table table-striped">
+            <thead>
+                <tr>
+                    <th>Employee id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {salespeople.map(person => {
                     return (
                         <tr key={person.employee_id + person.first_name}>
                             <td key={person.employee_id}>{person.employee_id}</td>
@@ -36,8 +36,8 @@ return (
                             <td key={person.last_name}>{person.last_name}</td>
                         </tr>
                     )
-            })}
-        </tbody>
+                })}
+            </tbody>
     </table>
     </div>
 )

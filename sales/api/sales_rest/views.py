@@ -23,14 +23,6 @@ class SalespersonEncoder(ModelEncoder):
     ]
 
 
-class CustomerListEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "first_name",
-        "last_name"
-    ]
-
-
 class CustomerDetailEncoder(ModelEncoder):
     model = Customer
     properties = [
@@ -106,7 +98,7 @@ def api_list_customer(request):
         customers = Customer.objects.all()
         return JsonResponse(
             {"customers": customers},
-            encoder=CustomerListEncoder,
+            encoder=CustomerDetailEncoder,
         )
     else:
         content = json.loads(request.body)
