@@ -44,6 +44,7 @@ class AppointmentListEncoder(ModelEncoder):
         "vin",
         "customer",
         "technician",
+        "vip",
     ]
 
 
@@ -55,6 +56,8 @@ class AppointmentDetailEncoder(ModelEncoder):
         "date_time",
         "technician",
         "reason",
+        "vip",
+        "status",
     ]
 
 
@@ -62,7 +65,7 @@ class AppointmentDetailEncoder(ModelEncoder):
 def technicianlist(request, tech_id=None):
     if request.method == "GET":
         if tech_id is not None:
-            techs = Technician.objects.filter(employee_id=tech_id)
+            techs = Technician.objects.filter(technician=tech_id)
         else:
             techs = Technician.objects.all()
         return JsonResponse(
@@ -71,18 +74,9 @@ def technicianlist(request, tech_id=None):
         )
     elif request.method == "POST":
         content = json.loads(request.body)
-        try:
-            tech_href = content["employee_id"]
-            employee_id = AutomobileVO.objects.get(import_href=tech_href)
-            content["employee_id"] = employee_id
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid location id"},
-                status=400,
-            )
-        hat = Technician.objects.create(**content)
+        tech = Technician.objects.create(**content)
         return JsonResponse(
-            hat,
+            tech,
             encoder=TechnicianDetailEncoder,
             safe=False
         )
@@ -101,3 +95,48 @@ def techniciandetail(request, pk):
     elif request.method == "DELETE":
         tech.delete()
         return JsonResponse({"message": "Technician deleted successfully."}, status=200)
+
+
+@require_http_methods(["GET", "POST"])
+def appointmentlist(request, apt_id=None):
+    if request.method == "GET":
+        if apt_id is not None:
+            apts = Appointment.objects.filter(id=apt_id)
+        else:
+            apts = Appointment.objects.all()
+        return JsonResponse(
+            {"apts": apts},
+            encoder=AppointmentListEncoder
+        )
+    elif request.method == "POST":
+        content = json.loads(request.body)
+        try:
+            apt_href = content["id"]
+            id = AutomobileVO.objects.get(import_href=apt_href)
+            content["id"] = id
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid location id"},
+                status=400,
+            )
+        apt = Appointment.objects.create(**content)
+        return JsonResponse(
+            apt,
+            encoder=AppointmentDetailEncoder,
+            safe=False
+        )
+
+
+@require_http_methods(["GET", "PUT", "DELETE"])
+def appointmentdetail(request, pk):
+    try:
+        apt = Appointment.objects.get(pk=pk)
+    except Appointment.DoesNotExist:
+        return JsonResponse({"message": "Appointment not found."}, status=400)
+    if request.method == "GET":
+        return JsonResponse(apt, encoder=AppointmentDetailEncoder, safe=False)
+    elif request.method == "PUT":
+        pass
+    elif request.method == "DELETE":
+        apt.delete()
+        return JsonResponse({"message": "Appointment deleted successfully."}, status=200)

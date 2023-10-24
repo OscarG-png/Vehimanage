@@ -18,6 +18,7 @@ class Appointment(models.Model):
     status = models.CharField(max_length=20, default="scheduled")
     vin = models.CharField(max_length=17)
     customer = models.CharField(max_length=100)
+    vip = models.BooleanField(default=False)
     technician = models.ForeignKey(
         Technician,
         on_delete=models.CASCADE
