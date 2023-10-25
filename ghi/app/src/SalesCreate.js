@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 function SalesCreate () {
     const [vins, setVins] = useState([]);
+    const [vin, setVin] = useState('');
     const [salesPeople, setSalesPeople] = useState([]);
     const [customers, setCustomers] = useState([]);
-    const [vin, setVin] = useState('');
     const [salesPerson, setSalesPerson] = useState('');
     const [customer, setCustomer] = useState('');
     const [price, setPrice] = useState('');

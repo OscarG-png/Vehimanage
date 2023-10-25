@@ -133,9 +133,13 @@ def api_list_sales(request):
         salesperson = Salesperson.objects.get(id=salesperson_id)
         customer_id = content.get("customer")
         customer = Customer.objects.get(id=customer_id)
+        automobile_vin = content.get("vin")
+        automobile = AutomobileVO.objects.get(vin=automobile_vin)
+        content["salesperson"] = salesperson
+        content["customer"] = customer
+        content.pop("vin")
         sale = Sale.objects.create(
-            salesperson=salesperson,
-            customer=customer,
+            automobile=automobile,
             **content)
         return JsonResponse(
             sale,
@@ -158,4 +162,18 @@ def api_sale_details(request, id):
         return JsonResponse(
             {"message": count > 0},
             status=200,
+        )
+
+
+@require_http_methods(["GET"])
+def api_list_automobiles(request):
+    if request.method == "GET":
+        automobile = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"automobiles": automobile},
+            encoder=AutomobileVOEncoder,
+        )
+    else:
+        return JsonResponse(
+            {"Error": "Unable to get vehicles"}
         )
