@@ -11,6 +11,7 @@ import TechForm from './TechCreate.js'
 import TechList from './TechList.js'
 import ServiceList from './ServiceList';
 import ServiceForm from './ServiceForm'
+import ServiceHistory from './ServiceHistory';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="appointments">
             <Route index element={<ServiceList/>} />
             <Route path="create" element={<ServiceForm/>}/>
+            <Route path="history" element={<ServiceHistory/>}/>
           </Route>
         </Routes>
       </div>

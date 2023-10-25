@@ -10,7 +10,7 @@ const ServiceForm = () => {
     const[tecs, setTechs] = useState([])
 
     const fetchTechs = async () => {
-                const url = 'http://localhost:8080/api/technicians'
+                const url = 'http://localhost:8080/api/technicians/'
                 const response = await fetch(url)
                 if(response.ok) {
                     const data = await response.json()
@@ -35,6 +35,7 @@ const ServiceForm = () => {
             reason,
         }
 
+        console.log(data)
         const AptURL = 'http://localhost:8080/api/appointments/'
         const fetchOptions = {
             method: "post",
@@ -116,7 +117,7 @@ const ServiceForm = () => {
                                 <option htmlFor="technician">Technicians</option>
                                     {tecs.map(technician => {
                                         return (
-                                            <option key={technician.id} value={technician.href}>{technician.first_name}</option>
+                                            <option key={technician.id} value={technician.id}>{technician.first_name + " " + technician.last_name}</option>
                                         )
                                     })}
                             </select>

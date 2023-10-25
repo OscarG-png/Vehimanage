@@ -7,7 +7,6 @@ function TechList() {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setTech(data.techs)
         } else {
             console.log("error getting technicians")

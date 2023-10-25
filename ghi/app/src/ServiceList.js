@@ -10,7 +10,7 @@ function ServiceList() {
             console.log(data)
             setApt(data.apts)
         } else {
-            console.log("error getting technicians")
+            console.log("error getting appointments")
         }
     }
     useEffect(() => {
@@ -18,12 +18,13 @@ function ServiceList() {
     }, [])
 return (
     <div>
-        <h1 style={{ marginTop: '20px' }}>Technicians</h1>
+        <h1 style={{ marginTop: '20px' }}>Appointments</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
                     <th>VIN</th>
                     <th>Is VIP?</th>
+                    <th>Customer</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Technician</th>
@@ -34,14 +35,15 @@ return (
             <tbody>
                     {appointments.map(person => {
                         return (
-                            <tr key={person.employee_id}>
-                            <td>{person.vin}</td>
-                            <td>{person.vip}</td>
-                            <td>{person.date}</td>
-                            <td>{person.time}</td>
-                            <td>{person.technician}</td>
-                            <td>{person.reason}</td>
-                            <td>{person.actions}</td>
+                            <tr key={person.id}>
+                                <td>{person.vin}</td>
+                                <td>{person.vip}</td>
+                                <td>{person.customer}</td>
+                                <td>{person.date}</td>
+                                <td>{person.time}</td>
+                                <td>{person.technician.first_name} {person.technician.last_name}</td>
+                                <td>{person.reason}</td>
+                                <td>{person.actions}</td>
                             </tr>
                         )
                     })}

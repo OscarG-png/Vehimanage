@@ -38,14 +38,16 @@ class AppointmentListEncoder(ModelEncoder):
     model = Appointment
     properties = [
         "id",
-        "date_time",
+        "date",
+        "time",
         "reason",
         "status",
         "vin",
         "customer",
-        "technician",
         "vip",
+        "technician",
     ]
+    encoders = {"technician": TechnicianDetailEncoder()}
 
 
 class AppointmentDetailEncoder(ModelEncoder):
@@ -53,21 +55,20 @@ class AppointmentDetailEncoder(ModelEncoder):
     properties = [
         "vin",
         "customer",
-        "date_time",
+        "date",
+        "time",
         "technician",
         "reason",
         "vip",
         "status",
     ]
+    encoders = {"technician": TechnicianDetailEncoder()}
 
 
 @require_http_methods(["GET", "POST"])
-def technicianlist(request, tech_id=None):
+def technicianlist(request):
     if request.method == "GET":
-        if tech_id is not None:
-            techs = Technician.objects.filter(technician=tech_id)
-        else:
-            techs = Technician.objects.all()
+        techs = Technician.objects.all()
         return JsonResponse(
             {"techs": techs},
             encoder=TechnicianListEncoder
@@ -98,27 +99,20 @@ def techniciandetail(request, pk):
 
 
 @require_http_methods(["GET", "POST"])
-def appointmentlist(request, apt_id=None):
+def appointmentlist(request):
     if request.method == "GET":
-        if apt_id is not None:
-            apts = Appointment.objects.filter(id=apt_id)
-        else:
-            apts = Appointment.objects.all()
+        apts = Appointment.objects.all()
+        for apt in apts:
+            apt.time = apt.time.strftime("%H:%M:%S")
         return JsonResponse(
             {"apts": apts},
             encoder=AppointmentListEncoder
         )
     elif request.method == "POST":
         content = json.loads(request.body)
-        try:
-            apt_href = content["id"]
-            id = AutomobileVO.objects.get(import_href=apt_href)
-            content["id"] = id
-        except AutomobileVO.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid location id"},
-                status=400,
-            )
+        tech_id = content.get('technician')
+        technician = Technician.objects.get(id=tech_id)
+        content["technician"] = technician
         apt = Appointment.objects.create(**content)
         return JsonResponse(
             apt,

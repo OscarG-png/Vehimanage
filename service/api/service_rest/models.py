@@ -13,12 +13,13 @@ class Technician(models.Model):
 
 
 class Appointment(models.Model):
-    date_time = models.DateTimeField()
+    vin = models.CharField(max_length=17)
+    vip = models.BooleanField(default=False)
+    customer = models.CharField(max_length=100)
+    date = models.DateField()
+    time = models.TimeField()
     reason = models.TextField()
     status = models.CharField(max_length=20, default="scheduled")
-    vin = models.CharField(max_length=17)
-    customer = models.CharField(max_length=100)
-    vip = models.BooleanField(default=False)
     technician = models.ForeignKey(
         Technician,
         on_delete=models.CASCADE
