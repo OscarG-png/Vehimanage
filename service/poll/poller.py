@@ -11,16 +11,21 @@ django.setup()
 
 # Import models from service_rest, here. Ignore vs-code error hinting
 # from service_rest.models import Something
+from service_rest.models import AutomobileVO
 
 
 def poll(repeat=True):
     while True:
         print('Service poller polling for data')
         try:
-            # Write your polling logic, here
-            # Do not copy entire file
-            pass
-        
+            response = requests.get("http://project-beta-inventory-api-1:8000/api/automobiles/")
+            data = json.loads(response.content)
+            for car in data["autos"]:
+                AutomobileVO.objects.update_or_create(
+                        vin=car["vin"],
+                        sold=car["sold"]
+                )
+            print("lets go!")
         except Exception as e:
             print(e, file=sys.stderr)
 
