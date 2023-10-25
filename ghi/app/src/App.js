@@ -13,7 +13,6 @@ import ServiceList from './ServiceList';
 import ServiceForm from './ServiceForm'
 import ServiceHistory from './ServiceHistory';
 import SalesPersonHistory from './SalesPeronHistory';
-import SalesPersonHistory from './SalesPeronHistory';
 import AutomobileList from './AutomobileList';
 import AutomobileCreate from './AutomobileCreate';
 
