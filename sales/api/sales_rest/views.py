@@ -6,20 +6,22 @@ import json
 from .models import Salesperson, Sale, Customer, AutomobileVO
 
 
+class AutomobileVOEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "vin",
+        "sold",
+        "id",
+    ]
+
+
 class SalespersonEncoder(ModelEncoder):
     model = Salesperson
     properties = [
         "first_name",
         "last_name",
-        "employee_id"
-    ]
-
-
-class CustomerListEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "first_name",
-        "last_name"
+        "employee_id",
+        "id",
     ]
 
 
@@ -30,27 +32,21 @@ class CustomerDetailEncoder(ModelEncoder):
         "last_name",
         "address",
         "phone_number",
+        "id",
     ]
-
-
-class SaleListEncoder(ModelEncoder):
-    model = Sale
-    properties = [
-        "salesperson",
-        "customer",
-    ]
-    encoders = {"salesperson": SalespersonEncoder(),
-                "customer": CustomerDetailEncoder()}
 
 
 class SaleDetailEncoder(ModelEncoder):
     model = Sale
     properties = [
+        "automobile",
         "salesperson",
         "customer",
-        "price"
+        "price",
+        "id",
     ]
-    encoders = {"salesperson": SalespersonEncoder(),
+    encoders = {"automobile": AutomobileVOEncoder(),
+                "salesperson": SalespersonEncoder(),
                 "customer": CustomerDetailEncoder()}
 
 
@@ -95,7 +91,7 @@ def api_list_customer(request):
         customers = Customer.objects.all()
         return JsonResponse(
             {"customers": customers},
-            encoder=CustomerListEncoder,
+            encoder=CustomerDetailEncoder,
         )
     else:
         content = json.loads(request.body)
@@ -130,11 +126,22 @@ def api_list_sales(request):
         sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
-            encoder=SaleListEncoder
+            encoder=SaleDetailEncoder
         )
     else:
         content = json.loads(request.body)
-        sale = Sale.objects.create(**content)
+        salesperson_id = content.get("salesperson")
+        salesperson = Salesperson.objects.get(id=salesperson_id)
+        customer_id = content.get("customer")
+        customer = Customer.objects.get(id=customer_id)
+        automobile_vin = content.get("vin")
+        automobile = AutomobileVO.objects.get(vin=automobile_vin)
+        content["salesperson"] = salesperson
+        content["customer"] = customer
+        content.pop("vin")
+        sale = Sale.objects.create(
+            automobile=automobile,
+            **content)
         return JsonResponse(
             sale,
             encoder=SaleDetailEncoder,
@@ -156,4 +163,18 @@ def api_sale_details(request, id):
         return JsonResponse(
             {"message": count > 0},
             status=200,
+        )
+
+
+@require_http_methods(["GET"])
+def api_list_automobiles(request):
+    if request.method == "GET":
+        automobile = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"automobiles": automobile},
+            encoder=AutomobileVOEncoder,
+        )
+    else:
+        return JsonResponse(
+            {"Error": "Unable to get vehicles"}
         )

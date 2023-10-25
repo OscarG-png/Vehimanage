@@ -19,10 +19,16 @@ def get_automobiles():
     response = requests.get(url)
     content = json.loads(response.content)
     for auto in content["autos"]:
-        AutomobileVO.objects.update_or_create(
-            vin=auto["vin"],
-            sold=auto["sold"]
-        )
+        try:
+            existing_vehicle = AutomobileVO.objects.filter(vin=auto["vin"]).first()
+
+            if existing_vehicle:
+                existing_vehicle.sold = auto["sold"]
+                existing_vehicle.save()
+            else:
+                AutomobileVO.objects.create(vin=auto["vin"], sold=auto["sold"])
+        except Exception as e:
+            print(e)
 
 
 def poll(repeat=True):
