@@ -11,6 +11,7 @@ import TechForm from './TechCreate.js'
 import TechList from './TechList.js'
 import ServiceList from './ServiceList';
 import ServiceForm from './ServiceForm'
+import SalesPersonHistory from './SalesPeronHistory';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="sales">
             <Route index element={<SalesList />} />
             <Route path="create" element={<SalesCreate />} />
+            <Route path="history" element={<SalesPersonHistory />} />
           </Route>
           <Route path="customers">
             <Route index element={<CustomerList />} />

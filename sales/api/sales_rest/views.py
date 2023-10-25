@@ -42,7 +42,8 @@ class SaleDetailEncoder(ModelEncoder):
         "automobile",
         "salesperson",
         "customer",
-        "price"
+        "price",
+        "id",
     ]
     encoders = {"automobile": AutomobileVOEncoder(),
                 "salesperson": SalespersonEncoder(),
