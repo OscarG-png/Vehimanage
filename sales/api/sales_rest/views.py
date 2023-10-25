@@ -11,6 +11,7 @@ class AutomobileVOEncoder(ModelEncoder):
     properties = [
         "vin",
         "sold",
+        "id",
     ]
 
 
@@ -128,7 +129,14 @@ def api_list_sales(request):
         )
     else:
         content = json.loads(request.body)
-        sale = Sale.objects.create(**content)
+        salesperson_id = content.get("salesperson")
+        salesperson = Salesperson.objects.get(id=salesperson_id)
+        customer_id = content.get("customer")
+        customer = Customer.objects.get(id=customer_id)
+        sale = Sale.objects.create(
+            salesperson=salesperson,
+            customer=customer,
+            **content)
         return JsonResponse(
             sale,
             encoder=SaleDetailEncoder,
