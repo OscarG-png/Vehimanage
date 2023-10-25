@@ -113,7 +113,7 @@ function SalesCreate () {
                         <option value="">Select a salesperson</option>
                         {salesPeople.map(person => {
                             return (
-                                <option key={person.employee_id} value={person.employee_id}>
+                                <option key={person.id} value={person.id}>
                                     {person.first_name} {person.last_name}
                                 </option>
                             )
@@ -127,7 +127,7 @@ function SalesCreate () {
                         <option value="">Select a customer</option>
                         {customers.map(customer => {
                             return (
-                                <option key={customer.first_name + customer.last_name} value={customer.first_name + " " + customer.last_name}>
+                                <option key={customer.id} value={customer.id}>
                                     {customer.first_name} {customer.last_name}
                                 </option>
                             )
