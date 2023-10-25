@@ -11,11 +11,8 @@ import TechForm from './TechCreate.js'
 import TechList from './TechList.js'
 import ServiceList from './ServiceList';
 import ServiceForm from './ServiceForm'
-<<<<<<< HEAD
 import ServiceHistory from './ServiceHistory';
-=======
 import SalesPersonHistory from './SalesPeronHistory';
->>>>>>> sales
 import SalesPersonHistory from './SalesPeronHistory';
 import AutomobileList from './AutomobileList';
 import AutomobileCreate from './AutomobileCreate';
