@@ -12,6 +12,8 @@ import TechList from './TechList.js'
 import ServiceList from './ServiceList';
 import ServiceForm from './ServiceForm'
 import SalesPersonHistory from './SalesPeronHistory';
+import AutomobileList from './AutomobileList';
+import AutomobileCreate from './AutomobileCreate';
 
 function App() {
   return (
@@ -32,6 +34,10 @@ function App() {
           <Route path="customers">
             <Route index element={<CustomerList />} />
             <Route path="create" element={<CustomerCreate />} />
+          </Route>
+          <Route path="automobiles">
+            <Route index element={<AutomobileList />} />
+            <Route path="create" element={<AutomobileCreate />} />
           </Route>
           <Route path="technicians">
             <Route index element={<TechList/>} />
