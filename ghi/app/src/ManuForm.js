@@ -7,7 +7,7 @@ const ManuForm = () => {
     async function handleSubmit(event) {
         event.preventDefault()
         const data = {
-            manufacturer,
+            "name": manufacturer
         }
 
         const ManuURL = 'http://localhost:8100/api/manufacturers/'
@@ -45,6 +45,7 @@ const ManuForm = () => {
                             <input value={manufacturer} onChange={handleChangeManufacturer} placeholder="manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-control" />
                             <label htmlFor="manufacturer">Manufacturer</label>
                         </div>
+                        <button className="btn btn-primary">Create</button>
                     </form>
                 </div>
             </div>

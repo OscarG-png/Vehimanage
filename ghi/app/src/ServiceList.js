@@ -9,6 +9,7 @@ function ServiceList() {
             const data = await response.json();
             console.log(data)
             setApt(data.apts)
+            console.log(data.apts)
         } else {
             console.log("error getting appointments")
         }
@@ -16,6 +17,32 @@ function ServiceList() {
     useEffect(() => {
         fetchData();
     }, [])
+
+const cancelAppointment = async (id) => {
+    const aptURL = `http://localhost:8080/api/appointments/${id}/`
+    const aptConfig = {
+    method: "PUT",
+    body: JSON.stringify({"status": "canceled"}),
+    headers: {
+        "Content-Type": "application/json",
+    }
+    }
+    const aptDone = await fetch (aptURL, aptConfig)
+    fetchData()
+}
+const finishAppointment = async (id) => {
+    const aptURL = `http://localhost:8080/api/appointments/${id}/`
+    const aptConfig = {
+    method: "PUT",
+    body: JSON.stringify({"status": "finished"}),
+    headers: {
+        "Content-Type": "application/json",
+    }
+    }
+    const aptDone = await fetch (aptURL, aptConfig)
+    fetchData()
+}
+
 return (
     <div>
         <h1 style={{ marginTop: '20px' }}>Appointments</h1>
@@ -33,17 +60,25 @@ return (
                 </tr>
             </thead>
             <tbody>
-                    {appointments.map(person => {
+                    {appointments
+                    .filter(appointment => appointment.status !== 'finished' && appointment.status !== 'canceled')
+                    .map(person => {
+                        console.log(typeof(person.time))
                         return (
                             <tr key={person.id}>
                                 <td>{person.vin}</td>
-                                <td>{person.vip}</td>
+                                <td>{person.vip ? "Yes": "No"}</td>
                                 <td>{person.customer}</td>
                                 <td>{person.date}</td>
                                 <td>{person.time}</td>
                                 <td>{person.technician.first_name} {person.technician.last_name}</td>
                                 <td>{person.reason}</td>
-                                <td>{person.actions}</td>
+                                <td>
+                                <button onClick={() => cancelAppointment(person.id)}
+                                style={{ backgroundColor: 'red', color: 'white' }}>Cancel</button>
+                                <button onClick={() => finishAppointment(person.id)}
+                                style={{ backgroundColor: 'green', color: 'white' }}>Finish</button>
+                                </td>
                             </tr>
                         )
                     })}

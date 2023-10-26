@@ -53,14 +53,14 @@ class AppointmentListEncoder(ModelEncoder):
 class AppointmentDetailEncoder(ModelEncoder):
     model = Appointment
     properties = [
-        "vin",
-        "customer",
         "date",
         "time",
-        "technician",
         "reason",
-        "vip",
         "status",
+        "vin",
+        "customer",
+        "vip",
+        "technician",
     ]
     encoders = {"technician": TechnicianDetailEncoder()}
 
@@ -102,8 +102,6 @@ def techniciandetail(request, pk):
 def appointmentlist(request):
     if request.method == "GET":
         apts = Appointment.objects.all()
-        for apt in apts:
-            apt.time = apt.time.strftime("%H:%M:%S")
         return JsonResponse(
             {"apts": apts},
             encoder=AppointmentListEncoder
@@ -121,7 +119,7 @@ def appointmentlist(request):
         )
 
 
-@require_http_methods(["GET", "PUT", "DELETE"])
+@require_http_methods(["GET", "PUT"])
 def appointmentdetail(request, pk):
     try:
         apt = Appointment.objects.get(pk=pk)
@@ -130,7 +128,12 @@ def appointmentdetail(request, pk):
     if request.method == "GET":
         return JsonResponse(apt, encoder=AppointmentDetailEncoder, safe=False)
     elif request.method == "PUT":
-        pass
-    elif request.method == "DELETE":
-        apt.delete()
-        return JsonResponse({"message": "Appointment deleted successfully."}, status=200)
+        content = json.loads(request.body)
+        try:
+            apt = Appointment.objects.get(id=pk)
+        except Appointment.DoesNotExist:
+            return JsonResponse({"message: does not exist"})
+        Appointment.objects.filter(id=pk).update(**content)
+        apt = Appointment.objects.get(id=pk)
+        # apt.time = apt.time.strftime("%H:%M:%S")
+        return JsonResponse(apt, encoder=AppointmentListEncoder, safe=False)
