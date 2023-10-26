@@ -8,7 +8,6 @@ function AutomobileList() {
         if (response.ok) {
             const data = await response.json();
             setAutomobiles(data.autos)
-            console.log(data.autos)
         }
     }
     useEffect(() => {
