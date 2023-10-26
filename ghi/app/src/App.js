@@ -18,6 +18,7 @@ import AutomobileCreate from './AutomobileCreate';
 import ManuForm from './ManuForm.js'
 import ManuList from './ManuList.js'
 import VehicleList from './VehicleList.js'
+import VehicleCreate from './VehicleCreate';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
           </Route>
           <Route path="models">
             <Route index element={<VehicleList/>} />
+            <Route path="create" element={<VehicleCreate />} />
           </Route>
         </Routes>
       </div>
