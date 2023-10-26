@@ -15,6 +15,9 @@ import ServiceHistory from './ServiceHistory';
 import SalesPersonHistory from './SalesPeronHistory';
 import AutomobileList from './AutomobileList';
 import AutomobileCreate from './AutomobileCreate';
+import ManuForm from './ManuForm.js'
+import ManuList from './ManuList.js'
+import VehicleList from './VehicleList.js'
 
 function App() {
   return (
@@ -48,6 +51,13 @@ function App() {
             <Route index element={<ServiceList/>} />
             <Route path="create" element={<ServiceForm/>}/>
             <Route path="history" element={<ServiceHistory/>}/>
+          </Route>
+          <Route path="manufacturer">
+            <Route index element={<ManuList/>}/>
+            <Route path="create" element={<ManuForm/>}/>
+          </Route>
+          <Route path="models">
+            <Route index element={<VehicleList/>} />
           </Route>
         </Routes>
       </div>
