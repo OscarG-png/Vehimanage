@@ -17,6 +17,8 @@ Team:
 
 ## Design
 
+![carcar website layout](./CarCar.png)
+
 ## Service microservice
 
 - poller.py
@@ -41,7 +43,7 @@ Team:
 - servicelist.js
   shows a list of all appointments in the database with the ability to click on "cancel" or "finished" to send it to the servicehistory.js
   - List tech GET and POST
-  http://localhost:8080/api/technicians/
+    http://localhost:8080/api/technicians/
 
 -List appointments GET and POST
 http://localhost:8080/api/appointments/
