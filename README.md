@@ -9,7 +9,7 @@ Team:
 
 - clone our repository.
 - from the root directory, run these commands, one after another:
-  "docker volume create project-beta"
+  "docker volume create beta-data"
   "docker-compose build"
   "docker-compose up"
 
