@@ -29,7 +29,6 @@ function AutomobileCreate() {
         data.year = year;
         data.vin = vin;
         data.model_id = model;
-        console.log(data);
 
         const url = "http://localhost:8100/api/automobiles/";
         const fetchConfig = {
@@ -53,7 +52,6 @@ function AutomobileCreate() {
         if (response.ok) {
             const data = await response.json();
             setModels(data.models)
-            console.log(data.models);
         }
     }
     useEffect(() => {
