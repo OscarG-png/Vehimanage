@@ -111,6 +111,12 @@ def appointmentlist(request):
         tech_id = content.get('technician')
         technician = Technician.objects.get(id=tech_id)
         content["technician"] = technician
+        vincheck = content["vin"]
+        try:
+            AutomobileVO.objects.get(vin=vincheck)
+            content["vip"] = True
+        except AutomobileVO.DoesNotExist:
+            pass
         apt = Appointment.objects.create(**content)
         return JsonResponse(
             apt,
