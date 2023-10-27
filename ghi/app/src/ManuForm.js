@@ -21,7 +21,6 @@ const ManuForm = () => {
         const response = await fetch(ManuURL, fetchOptions)
         if (response.ok) {
             const newmanu = await response.json();
-            console.log(newmanu);
             setManufacturer('');
         } else {
             const errorData = await response.json();
