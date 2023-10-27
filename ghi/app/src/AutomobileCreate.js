@@ -63,24 +63,24 @@ function AutomobileCreate() {
             <div className="my-3 card">
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">Color</label>
-                    <input onChange={handleColorChange} value={color} type="text" className="form-control"
+                    <input required onChange={handleColorChange} value={color} type="text" className="form-control"
                     id="formGroupExampleInput" placeholder="First name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput2" className="form-label">Year</label>
-                    <input onChange={handleYearChange} value={year} type="number" className="form-control"
+                    <input required onChange={handleYearChange} value={year} type="number" className="form-control"
                     id="formGroupExampleInput2" placeholder="Last name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput3" className="form-label">VIN</label>
-                    <input onChange={handleVinChange} value={vin} type="text" className="form-control"
+                    <input required onChange={handleVinChange} value={vin} type="text" className="form-control"
                     id="formGroupExampleInput3" placeholder="Last name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="model-select" id="form-select" className="form-label my-2">
                         Model
                     </label>
-                    <select onChange={handleModelChange} id="model-select" className="form-select">
+                    <select required onChange={handleModelChange} id="model-select" className="form-select">
                         <option value="">Select a Model</option>
                         {models.map(model => {
                             return (

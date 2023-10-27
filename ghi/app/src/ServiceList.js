@@ -7,9 +7,7 @@ function ServiceList() {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data)
             setApt(data.apts)
-            console.log(data.apts)
         } else {
             console.log("error getting appointments")
         }
