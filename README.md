@@ -40,6 +40,14 @@ Team:
   shows a list of all previous service appointments, includes a search bar at the top which searches based on vin numbers
 - servicelist.js
   shows a list of all appointments in the database with the ability to click on "cancel" or "finished" to send it to the servicehistory.js
+  - List tech GET and POST
+  http://localhost:8080/api/technicians/
+
+-List appointments GET and POST
+http://localhost:8080/api/appointments/
+
+-List manufacturers GET and POST
+http://localhost:8100/api/salespeople/
 
 ## Sales microservice
 
