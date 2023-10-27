@@ -3,7 +3,7 @@
 Team:
 
 * Person 1 - Which microservice?
-* Brandon Moghadam - Service
+* Brandon Moghadam - Service.
 
 ## Design
 
