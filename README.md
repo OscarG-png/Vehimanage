@@ -23,12 +23,12 @@ ability to pull updates from the database that can then be used in my microservi
 - models.py
 automobileVO - vin and sold status (ability to pull from the poller)
 technician - first_name, last_name, and employee_id
-appoointments - vin, vip, customer, date, time, reason, status, technician
+appoointments - vin, vip, customer, date, time, reason, status, and technician
 - views.py
 "GET "POST" and "PUT" methods to interact with the front end
 created encoders for Automobile VO, technician, and appointments
 - urls.py
-connects to the main url which then sets links to localhost3000/api/(specific name in urls.py file)
+connects to the main url which then sets links to localhost3000/api/(specific name in urls.py file by path)
 - techlist.js
 shows a list of all technicians in the database
 - techcreate.js
