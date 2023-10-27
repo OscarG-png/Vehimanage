@@ -53,7 +53,7 @@ function CustomerCreate() {
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">First name</label>
                     <input value={firstName} onChange={handleFirstNameChange} type="text"
-                    className="form-control" id="formGroupExampleInput" placeholder="First name"/>
+                    className="form-control" id="formGroupExampleInput" placeholder="First Name"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput2" className="form-label">Last Name</label>
@@ -63,7 +63,7 @@ function CustomerCreate() {
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput3" className="form-label">Phone Number</label>
                     <input value={phoneNumber} onChange={handlePhoneNumberChange} type="text" className="form-control"
-                    id="formGroupExampleInput3" placeholder="Phone Number"/>
+                    id="formGroupExampleInput3" placeholder="123-456-7890"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formControlTextarea1" className="form-label">Address</label>

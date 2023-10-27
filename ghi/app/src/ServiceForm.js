@@ -34,7 +34,6 @@ const ServiceForm = () => {
             reason,
         }
 
-        console.log(data)
         const AptURL = 'http://localhost:8080/api/appointments/'
         const fetchOptions = {
             method: "post",
@@ -46,7 +45,6 @@ const ServiceForm = () => {
         const response = await fetch(AptURL, fetchOptions)
         if (response.ok) {
             const newapt= await response.json();
-            console.log(newapt);
             setVin('');
             setCustomer('');
             setDate('');
@@ -112,7 +110,8 @@ const ServiceForm = () => {
                             <label htmlFor="time">Time</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <select onChange={handleChangeTechnician} name="technician" id="technician" className="form-select">
+                            <select onChange={handleChangeTechnician} name="technician"
+                            id="technician" className="form-select" value={technician}>
                                 <option htmlFor="technician">Technicians</option>
                                     {tecs.map(technician => {
                                         return (

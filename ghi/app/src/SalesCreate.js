@@ -94,7 +94,7 @@ function SalesCreate () {
             <div className="my-3 card">
                 <div className="mb-3 mx-3">
                     <label htmlFor="vin-select" id="form-select" className="form-label mx-2 my-2">VIN</label>
-                    <select onChange={handleVinChange} id="vin-select"
+                    <select onChange={handleVinChange} id="vin-select" value={vin}
                     className="form-select" aria-label="Default select example">
                         <option value="">Select a VIN</option>
                         {vins.map(auto => {
@@ -109,7 +109,7 @@ function SalesCreate () {
                 <div className="mb-3 mx-3">
                     <label htmlFor="salesperson-select" id="form-select"
                     className="form-label mx-2">Salesperson</label>
-                    <select onChange={handleSalesPersonChange} id="salesperson-select"
+                    <select onChange={handleSalesPersonChange} id="salesperson-select" value={salesPerson}
                     className="form-select" aria-label="Default select example">
                         <option value="">Select a salesperson</option>
                         {salesPeople.map(person => {
@@ -123,7 +123,8 @@ function SalesCreate () {
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="customer-select" id="form-select" className="form-label mx-2">Customer</label>
-                    <select onChange={handleCustomerChange} id="customer-select" className="form-select"
+                    <select onChange={handleCustomerChange} id="customer-select"
+                    className="form-select" value={customer}
                     aria-label="Default select example">
                         <option value="">Select a customer</option>
                         {customers.map(customer => {

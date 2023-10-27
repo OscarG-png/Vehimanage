@@ -64,17 +64,17 @@ function AutomobileCreate() {
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput" className="form-label">Color</label>
                     <input required onChange={handleColorChange} value={color} type="text" className="form-control"
-                    id="formGroupExampleInput" placeholder="First name"/>
+                    id="formGroupExampleInput" placeholder="Color"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput2" className="form-label">Year</label>
                     <input required onChange={handleYearChange} value={year} type="number" className="form-control"
-                    id="formGroupExampleInput2" placeholder="Last name"/>
+                    id="formGroupExampleInput2" placeholder="year"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="formGroupExampleInput3" className="form-label">VIN</label>
                     <input required onChange={handleVinChange} value={vin} type="text" className="form-control"
-                    id="formGroupExampleInput3" placeholder="Last name"/>
+                    id="formGroupExampleInput3" placeholder="VIN"/>
                 </div>
                 <div className="mb-3 mx-3">
                     <label htmlFor="model-select" id="form-select" className="form-label my-2">

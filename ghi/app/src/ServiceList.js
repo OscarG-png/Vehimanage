@@ -61,7 +61,6 @@ return (
                     {appointments
                     .filter(appointment => appointment.status !== 'finished' && appointment.status !== 'canceled')
                     .map(person => {
-                        console.log(typeof(person.time))
                         return (
                             <tr key={person.id}>
                                 <td>{person.vin}</td>

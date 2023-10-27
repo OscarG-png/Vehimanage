@@ -25,7 +25,6 @@ const TechForm = () => {
         const response = await fetch(TechURL, fetchOptions)
         if (response.ok) {
             const newtech = await response.json();
-            console.log(newtech);
             setFirst_Name('');
             setLast_Name('');
             setEmployeeID('');
