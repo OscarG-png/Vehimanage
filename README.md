@@ -9,7 +9,7 @@ Team:
 
 - clone our repository.
 - from the root directory, run these commands, one after another:
-  "docker volume create two-shot-pgdata"
+  "docker volume create project-beta"
   "docker-compose build"
   "docker-compose up"
 
