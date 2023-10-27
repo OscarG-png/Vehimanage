@@ -96,6 +96,9 @@ function Nav() {
               <NavLink className="nav-link" style={{ color: 'white' }} to="/salespeople">Salespeople</NavLink>
             </li>
             <li className='nav-item'>
+              <NavLink className='nav-link' style={{ color: 'white' }} to="/salespeople/create">Add Salesperson</NavLink>
+            </li>
+            <li className='nav-item'>
               <NavLink className="nav-link" style={{ color: 'white' }} to="/sales/history">Salesperson History</NavLink>
             </li>
             </ul>
