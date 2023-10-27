@@ -47,7 +47,7 @@ Team:
 http://localhost:8080/api/appointments/
 
 -List manufacturers GET and POST
-http://localhost:8100/api/salespeople/
+http://localhost:8100/api/manufacturers/
 
 ## Sales microservice
 
