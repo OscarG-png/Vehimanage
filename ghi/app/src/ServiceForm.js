@@ -15,7 +15,6 @@ const ServiceForm = () => {
                 if(response.ok) {
                     const data = await response.json()
                     setTechs(data.techs)
-                    console.log(data.techs)
         }
     }
 
